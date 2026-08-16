@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile7_signup.css') }}" rel="stylesheet">
+
+<ul class="nav-right">
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+</ul>
+
+
+
+<div class="form-image-container-3">
+    <!-- Form on the left -->
+    <div class="form-container">
+        <h4>Sign Up Now!</h4>
+        <form method="POST">
+            <div class="grid-container">
+               
+                {{ form.hidden_tag() }}
+
+                <!-- Username field -->
+                <div>{{ form.username.label(class="form-label") }}</div>
+                <div>{{ form.username(class="form-control") }}</div>  
+                
+                <!-- Email field -->
+                <div>{{ form.email.label(class="form-label") }}</div>
+                <div>{{ form.email(class="form-control") }}</div>
+                
+                <!-- Password field -->
+                <div>{{ form.password.label(class="form-label") }}</div>
+                <div>{{ form.password(class="form-control") }}</div>
+
+                <!-- Confirm Password field -->
+                <div>{{ form.confirm_password.label(class="form-label") }}</div>
+                <div>{{ form.confirm_password(class="form-control") }}</div>
+            </div>
+           
+            </br>
+    
+            {{ form.sign_up(class="btn btn-primary", id="signup") }}
+        </form>
+    </div>
+
+    <!-- Image on the right -->
+    <div class="image-login">
+        <img src="static/images/sign_up.png" alt="sign_up" 
+            width="600" height="350">
+    </div>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% endblock %}

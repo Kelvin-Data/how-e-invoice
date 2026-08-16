@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile2_dashboard.css') }}" rel="stylesheet">
+
+<script>
+function confirmLogout(event) {
+    // Prevent the default link behavior
+    event.preventDefault();
+
+    // Show confirmation dialog
+    if (confirm("Are you sure you want to logout? You will loss all data!")) {
+        // If confirmed, redirect to the logout route
+        window.location.href = "{{ url_for('logout') }}";
+    }
+    // If canceled, do nothing and stay on the current page
+}
+</script>
+
+<ul class="nav-right">
+{% if is_admin %}
+    <li><a href="{{ url_for('admin')}}">Admin</a></li>
+{% endif %}
+    <li><a href="{{ url_for('logout') }}" 
+        onclick="confirmLogout(event)">Logout</a>
+    </li>
+</ul>
+
+<h1 >Dashboard</h1>
+<small>Version 1.0</small>
+<div class="container text-center">
+    <!-- File Upload Section  -->
+    <div class="row align-items-center">
+        <div class="col">
+            <label for="file-upload" class="form-label1">Please upload the Excel file:</label>
+        </div>  
+        <div class="col" id="upload_button">  
+            <form action="{{ url_for('upload') }}" method="POST" 
+                enctype="multipart/form-data">
+                <input type="file" name="filename" value="" id="upload1">
+                <button type="submit" class="btn btn-warning" id="upload2">
+                    Upload  <i class="fas fa-upload"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <!-- File Download Section  -->
+    <div class="row align-items-center">
+        <div class="col">
+            <label for="file-download" class="form-label2">Please download <b>individual e-invoice (B to B)</b> excel:</label>
+        </div>  
+        <div class="col" id="download_button"> 
+            <p>{{ filename }}</p> 
+            <form action="{{ url_for('download_1', filename=filename) }}" method="GET">
+                <button type="submit" class="btn btn-success" id="download_1">
+                    Download  <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
+    </div> 
+</div>  
+
+<div class="container text-center">
+    <!-- File Download Section  -->
+    <div class="row align-items-center">
+        <div class="col">
+            <label for="file-download" class="form-label3">Please download <b>consolidated e-invoice (B to C)</b> excel:</label>
+        </div>  
+        <div class="col" id="download_button"> 
+            <p>{{ filename }}</p> 
+            <form action="{{ url_for('download_2', filename=filename) }}" method="GET">
+                <button type="submit" class="btn btn-primary" id="download_2">
+                    Download  <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
+    </div> 
+</div>  
+</br>
+   
+<div class="container text-center">
+    <img src="static/images/dashboard.png" alt="Dashboard" 
+    width="500" height="290">
+</div>
+
+<a class="btn btn-secondary" 
+ href="{{ url_for('supplier')}}" id="next">
+    Next  <i class="fas fa-arrow-right"></i>
+</a>
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile1_login.css') }}" rel="stylesheet">
+
+<ul class="nav-right">
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li id="login_link"><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+</ul>
+
+<h1>Welcome To How E-Invoice Portal</h1>
+<h4>Your E-invoice Journey Starts Right Here!!</h4>
+<p id="var">Trial Version</p>
+<div class="form-image-container">
+    <!-- Form on the left -->
+    <div class="form-container">
+        <form action="/login" method="POST">
+            <div class="grid-container">
+                {{ form.hidden_tag() }}
+
+                <!-- Username field -->
+                <div>{{ form.email.label(class="form-label") }}</div>
+                <div>{{ form.email(class="form-control") }}</div>   
+                
+                <!-- Password field -->
+                <div>{{ form.password.label(class="form-label") }}</div>
+                <div>{{ form.password(class="form-control") }}</div>
+            </div>
+        
+            </br>
+            <div class="forget-psw">
+            <a href="{{ url_for('forget') }}">Forget password?</a>
+            </div>
+            </br>
+
+            {{ form.login(class="btn btn-primary", id="login") }}
+        </form>
+
+        <hr class="rounded">
+        <form action="/google_login" method="GET">
+            <button type="submit"  name="google_button" 
+                class="btn btn-warning" id="google">
+                Google <i class="fab fa-google"></i>
+            </button>
+        </form>
+     
+      
+    </div>
+
+    <!-- Image on the right -->
+    <div class="image-login">
+        <img src="static/images/login.png" alt="Login-person" 
+            width="500" height="300">
+    </div>
+</div>
+
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+{% endblock %}

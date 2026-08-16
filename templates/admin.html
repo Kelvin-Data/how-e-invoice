@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/invoice.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/admin.css') }}" rel="stylesheet">
+
+<script>
+function confirmLogout(event) {
+    // Prevent the default link behavior
+    event.preventDefault();
+
+    // Show confirmation dialog
+    if (confirm("Are you sure you want to logout? You will lose all data!")) {
+        // If confirmed, redirect to the logout route
+        window.location.href = "{{ url_for('logout') }}";
+    }
+    // If canceled, do nothing and stay on the current page
+}
+
+// Fade out the alert after 3 seconds
+setTimeout(function() {
+    const alert = document.getElementById('flash-alert');
+    if (alert) {
+        alert.classList.add('fade');
+    }
+}, 3000);
+</script>
+
+<!-- NAV link -->
+<ul class="nav-right">
+    <li><a href="{{ url_for('logout') }}" onclick="confirmLogout(event)">Logout</a></li>
+</ul>
+
+<h1>Admin</h1>
+
+<form action="{{ url_for('update_blacklist') }}" method="POST">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    {% for column in header %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    <th style='width:150px; text-align: center;'>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in content %}
+                <tr>
+                    {% for item in row %}
+                        {% if loop.index0 == header.index('blacklisted') %}
+                            <!-- Render checkbox for blacklisted -->
+                            <td class="checkbox-container">
+                                <input type="checkbox" 
+                                    name="blacklisted_{{ row[0] }}"  
+                                    value="1" 
+                                    {% if row[header.index('blacklisted')] %} checked {% endif %}
+                                    onchange="submitForm('{{ row[0] }}', this.checked)">
+                                <input type="hidden" name="user_id" value="{{ row[0] }}">
+                            </td>
+                        {% elif loop.index0 == header.index('password_hash') %}
+                            <!-- Render truncated password_hash -->
+                            <td>{{ item[:5] + '...' if item else 'N/A' }}</td>
+                        {% else %}
+                            <!-- Render other fields normally -->
+                            <td>{{ item }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td style="text-align: center; vertical-align: middle; padding: 2px;">
+                        <!-- Delete button with user ID as parameter -->
+                        <a href='/delete_user/{{ row[0] }}' class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="button-container">
+        <button type="submit" class="btn btn-warning" id="save">
+            Save  <i class="fas fa-save"></i>
+        </button>
+    
+        <button type="button" class="btn btn-success" id="back"
+            onclick="window.location.href='{{ url_for('dashboard') }}'">
+            Dashboard <i class="fas fa-dashboard"></i>
+        </button>
+    </div>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="alert-container">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+{% endblock %}

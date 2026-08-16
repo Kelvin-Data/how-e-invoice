@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/invoice.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/buyer.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile4_buyer.css') }}" rel="stylesheet">
+<script>
+    function confirmLogout(event) {
+    // Prevent the default link behavior
+    event.preventDefault();
+
+    // Show confirmation dialog
+    if (confirm("Are you sure you want to logout? You will loss all data!")) {
+        // If confirmed, redirect to the logout route
+        window.location.href = "{{ url_for('logout') }}";
+    }
+    // If canceled, do nothing and stay on the current page
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchSuccessful = {{ 'true' if search_successful else 'false' }}; // Pass value from Flask
+
+    // Store the search success status in sessionStorage
+    sessionStorage.setItem('search_successful', searchSuccessful);
+
+    const nextButton = document.getElementById('next3');
+
+    // Check the search success status from sessionStorage
+    const storedSearchStatus = sessionStorage.getItem('search_successful') === 'true';
+
+    // Enable the Next button if search was successful
+    if (storedSearchStatus) {
+        nextButton.disabled = false;
+    } else {
+        nextButton.disabled = true;
+    }
+
+    // Add click event listener to navigate when the button is enabled
+    nextButton.addEventListener('click', function() {
+        if (!nextButton.disabled) {
+            console.log("Navigating to new line_items page");  // Debug log
+            window.location.href = "{{ url_for('line_items') }}";
+        }
+    });
+});
+</script>
+
+
+<!--NAV link-->
+<ul class="nav-right">
+    <li><a href="{{ url_for('logout')}}" 
+        onclick="confirmLogout(event)">Logout</a></li>
+</ul>
+
+<h1>Buyer</h1>
+
+<form action="/buyer" method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="container">
+        <div class="row">
+            <!-- Left container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    {{ form.b_id_type.label(class="form-label") }}
+                    {{ form.b_id_type(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.b_id_no.label(class="form-label") }}
+                    {{ form.b_id_no(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.b_tel_no.label(class="form-label") }}
+                    {{ form.b_tel_no(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.b_email.label(class="form-label") }}
+                    {{ form.b_email(class="form-control") }}
+                </div>
+            </div>   
+
+     <!-- Right container occupying half of the row -->
+     <div class="col-md-6">
+        <div class="mb-3">
+            {{ form.b_tin.label(class="form-label") }}
+            {{ form.b_tin(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.b_name.label(class="form-label") }}
+            {{ form.b_name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.b_sst.label(class="form-label") }}
+            {{ form.b_sst(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.b_tt.label(class="form-label") }}
+            {{ form.b_tt(class="form-control") }}
+        </div>
+    </div>
+        
+     <div class="col-12">
+        <div class="mb-3">
+            {{ form.b_add_1.label(class="form-label") }}
+            {{ form.b_add_1(class="form-control") }}
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="mb-3">
+            {{ form.b_add_2.label(class="form-label") }}
+            {{ form.b_add_2(class="form-control") }}
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="mb-3">
+            {{ form.b_add_3.label(class="form-label") }}
+            {{ form.b_add_3(class="form-control") }}
+        </div>
+    </div>
+
+     <!-- Left container occupying half of the row -->
+     <div class="col-md-6">
+        <div class="mb-3">
+            {{ form.b_city.label(class="form-label") }}
+            {{ form.b_city(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.b_country.label(class="form-label") }}
+            {{ form.b_country(class="form-control") }}
+        </div>
+    </div>
+
+   <!-- Right container occupying half of the row -->
+    <div class="col-md-6">
+        <div class="mb-3">
+            {{ form.b_postcode.label(class="form-label") }}
+            {{ form.b_postcode(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.b_state.label(class="form-label") }}
+            {{ form.b_state(class="form-control") }}
+        </div>
+    </div>
+</form>
+
+<form action="{{ url_for('search') }}" method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Left container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    {{ form.b_search.label(class="form-label") }}
+                    {{ form.b_search(class="form-control") }}
+                </div>
+                <small>* Required fields, ** SST and TT are not supported!</small>
+            </div>
+           
+            <!-- Right container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                        {{ form.b_result.label(class="form-label") }}
+                        {{ form.b_result(class="form-control") }}
+                </div>
+            </div>
+        </div>
+
+    <!-- Action buttons --> 
+    <div class="button-container">
+        <a type="button" class="btn btn-warning" 
+        href="{{ url_for('supplier')}}" id="next">
+            <i class="fas fa-arrow-left"></i> Back  
+        </a>
+
+        <form action="{{ url_for('search') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <button type="submit" class="btn btn-primary" id="next1">
+                <i class="fa fa-search"></i> Search  
+            </button>
+        </form>
+
+        <form action="{{ url_for('clear') }}" method="POST" 
+            class="clear-form">
+            {{ form.hidden_tag() }}
+            <button type="submit" class="btn btn-danger" id="next2">
+                Clear <i class="fa fa-eraser"></i> 
+            </button>
+        </form>
+
+        <button type="button" class="btn btn-success" 
+            id="next3" disabled>
+                Next <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+</form>
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+
+<!-- Google AdSense Code -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+data-ad-slot="XXXXXXXXXX"
+data-ad-format="auto"></ins>
+
+
+
+ 
+
+
+ <style>
+    /* html, body {
+    height: 125%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(150deg, 
+        rgba(95,239,234,1) 0%, 
+        rgba(111,136,250,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+} */
+ </style>
+ {% endblock %}

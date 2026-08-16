@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/invoice.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/supplier.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile3_supplier.css') }}" rel="stylesheet">
+
+<script>
+        function confirmLogout(event) {
+        // Prevent the default link behavior
+        event.preventDefault();
+    
+        // Show confirmation dialog
+        if (confirm("Are you sure you want to logout? You will loss all the data!")) {
+            // If confirmed, redirect to the logout route
+            window.location.href = "{{ url_for('logout') }}";
+        }
+        // If canceled, do nothing and stay on the current page
+    }
+     </script>
+
+<!--NAV link-->
+<ul class="nav-right">
+    <li><a href="{{ url_for('logout')}}" 
+        onclick="confirmLogout(event)">Logout</a></li>
+</ul>
+
+<h1>Supplier</h1>
+<form action="/supplier" method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="container">
+        <div class="row">
+            <!-- Left container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <!-- Name field -->
+                    {{ form.s_name.label(class="form-label") }}
+                    {{ form.s_name(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Business registration field -->
+                    {{ form.s_business_no.label(class="form-label") }}
+                    {{ form.s_business_no(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- MSIC code field -->
+                    {{ form.s_msic_code.label(class="form-label") }}            
+                    {{ form.s_msic_code(class="form-control") }}            
+                </div>
+                <div class="mb-3">
+                    <!-- Telephone field -->
+                    {{ form.s_telephone.label(class="form-label") }}
+                    {{ form.s_telephone(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Email field -->
+                    {{ form.s_email.label(class="form-label") }}     
+                    {{ form.s_email(class="form-control") }}      
+                    <small>
+                        * Required fields,   ** SST and TT are not supported! 
+                    </small>
+                </div>
+            </div>
+    
+            <!-- Right container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <!-- TIN field -->
+                    {{ form.s_tin.label(class="form-label") }}
+                    {{ form.s_tin(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- MSIC Description field -->
+                    {{ form.s_msic_desc.label(class="form-label") }}
+                    {{ form.s_msic_desc(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- SST field --> 
+                    {{ form.s_sst.label(class="form-label") }}
+                    {{ form.s_sst(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- TT field --> 
+                    {{ form.s_tt.label(class="form-label") }}
+                    {{ form.s_tt(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="mb-3">
+                    {{ form.s_add_1.label(class="form-label") }}
+                    {{ form.s_add_1(class="form-control") }}
+                </div>
+            </div>
+        
+            <div class="col-12">
+                <div class="mb-3">
+                    {{ form.s_add_2.label(class="form-label") }}
+                    {{ form.s_add_2(class="form-control") }}
+                </div>
+            </div>
+        
+            <div class="col-12">
+                <div class="mb-3">
+                    {{ form.s_add_3.label(class="form-label") }}
+                    {{ form.s_add_3(class="form-control") }}
+                </div>
+            </div>
+       
+
+         <!-- Left container occupying half of the row -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                {{ form.s_city.label(class="form-label") }}
+                {{ form.s_city(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ form.s_country.label(class="form-label") }}
+                {{ form.s_country(class="form-control") }}
+            </div>
+        </div>
+
+   <!-- Right container occupying half of the row -->
+    
+        <div class="col-md-6">
+            <div class="mb-3">
+                {{ form.s_postcode.label(class="form-label") }}
+                {{ form.s_postcode(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ form.s_state.label(class="form-label") }}
+                {{ form.s_state(class="form-control") }}
+            </div>
+        </div>
+    
+
+   
+        <a  class="btn btn-warning" id="next"
+        href="{{ url_for('dashboard')}}" >
+            <i class="fas fa-arrow-left"></i> Back  
+        </a>
+
+        <a class="btn btn-success" id="next1"
+        href="{{ url_for('buyer')}}">
+            Next <i class="fas fa-arrow-right"></i>
+        </a>
+  
+</form>
+
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+
+<!-- Google AdSense Code -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+data-ad-slot="XXXXXXXXXX"
+data-ad-format="auto"></ins>
+
+{% endblock %}
+
+
+
+ 
+
+
+

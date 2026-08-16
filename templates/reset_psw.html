@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Flash message -->
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning
+    alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" 
+    data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile9_reset.css') }}" rel="stylesheet">
+
+<ul class="nav-right">
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+</ul>
+
+<h1></h1>
+<h4></h4>
+
+<div class="form-image-container-1">
+    <!-- Form on the left -->
+    <div class="form-container">
+        <h4>Reset password?</h4>
+        <form method="POST">
+            <div class="grid-container">
+                {{ form.hidden_tag() }}
+
+                <!-- Username field -->
+                <div>{{ form.password.label(class="form-label") }}</div>
+                <div>{{ form.password(class="form-control") }}</div>   
+                
+                <!-- Email field -->
+                <div>{{ form.confirm_password.label(class="form-label") }}</div>
+                <div>{{ form.confirm_password(class="form-control") }}</div>
+            </div>
+        
+            </br>
+
+            {{ form.reset(class="btn btn-primary", id="submit" ) }}
+
+        </form>
+    </div>
+
+    <!-- Image on the right -->
+    <div class="image-login">
+        <img src="static/images/login.png" alt="Login-person" 
+            width="500" height="300">
+    </div>
+</div>
+{% endblock %}

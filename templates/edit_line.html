@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/invoice.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/edit_line.css') }}" rel="stylesheet">
+
+ <!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+       flatpickr("#datetime-input", {
+           enableTime: true,            // Enable time selection
+           dateFormat: "Y-m-d H:i:S",   // Match the backend format
+           time_24hr: true,              // Use 24-hour time format
+           minDate: new Date(new Date().setDate(new Date().getDate() - 3)), // 3 days ago
+           maxDate: new Date()  
+       });
+   });
+</script>
+
+
+<!--NAV link-->
+<ul class="nav-right">
+    <li><a href="{{ url_for('logout')}}" 
+        onclick="confirmLogout(event)">Logout</a></li>
+</ul>
+<h1>Edit Line</h1>
+<form action="{{ url_for('update_line', id=id) }}" method="POST">
+    {{ form.hidden_tag() }}
+        <div class="container">
+            <div class="row">
+                <!-- Left container occupying half of the row -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.l_inv_no.label(class="form-label") }}
+                        {{ form.l_inv_no(class="form-control",
+                        value=form.l_inv_no.data) }}
+                    </div>
+                    <small> ***Invoice number is auto numbering</small>
+                    <div class="mb-3">
+                        {{ form.l_class_code.label(class="form-label") }}
+                        {{ form.l_class_code(class="form-control") }}
+                    </div>
+                </div>
+    
+                  <!-- Right container occupying half of the row -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.l_date_time.label(class="form-label") }}
+                        {{ form.l_date_time(class="form-control", 
+                        id="datetime-input", value=form.l_date_time.data) }}
+                    </div>
+                       
+                </div>       
+                 <!-- Entire container occupying half of the row -->
+                <div class="col-12">
+                    <div class="mb-3">
+                        {{ form.l_desc.label(class="form-label") }}
+                        {{ form.l_desc(class="form-control") }}
+                    </div>
+                </div>
+                <!-- Left container occupying half of the row -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.l_quantity.label(class="form-label") }}
+                        {{ form.l_quantity(class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.l_unit_price.label(class="form-label") }}
+                        {{ form.l_unit_price(class="form-control") }}
+                    </div>
+                </div>
+    
+                <!-- Right container occupying half of the row -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.l_measurement.label(class="form-label") }}
+                        {{ form.l_measurement(class="form-control") }}
+                    </div>
+                </div>
+
+                <div class="col d-flex justify-content-start">
+                    <a type="button" class="btn btn-warning" 
+                    href="{{ url_for('line_items')}}" id="next">
+                        <i class="fas fa-arrow-left"></i> Back  
+                    </a>
+                </div>
+
+            <div class="col d-flex justify-content-end">
+                <button type="submit" class="btn btn-info" id="next3">
+                    Update Line <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+{% endblock %}

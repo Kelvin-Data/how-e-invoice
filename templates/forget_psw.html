@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile8_forget.css') }}" rel="stylesheet">
+
+<ul class="nav-right">
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+</ul>
+
+
+<div class="form-image-container-1">
+    <!-- Form on the left -->
+    <div class="form-container">
+        <h4>Forgot password?</h4>
+        <form method="POST">
+            <div class="grid-container">
+                {{ form.hidden_tag() }}
+
+                <!-- Username field -->
+                <div>{{ form.username.label(class="form-label") }}</div>
+                <div>{{ form.username(class="form-control") }}</div>   
+                
+                <!-- Email field -->
+                <div>{{ form.email.label(class="form-label") }}</div>
+                <div>{{ form.email(class="form-control") }}</div>
+            </div>
+        
+            </br>
+
+            {{ form.send_reset(class="btn btn-primary", id="reset") }}
+        </form>
+
+    </div>
+
+    <!-- Image on the right -->
+    <div class="image-login">
+        <img src="static/images/login.png" alt="Login-person" 
+            width="500" height="300">
+    </div>
+</div>
+{% endblock %}

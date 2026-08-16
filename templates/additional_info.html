@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/invoice.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/additional_info.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile6_additional_info.css') }}" rel="stylesheet">
+
+<script>
+    function confirmLogout(event) {
+        // Prevent the default link behavior
+        event.preventDefault();
+    
+        // Show confirmation dialog
+        if (confirm("Are you sure you want to logout? You will loss all data!")) {
+            // If confirmed, redirect to the logout route
+            window.location.href = "{{ url_for('logout') }}";
+        }
+        // If canceled, do nothing and stay on the current page
+    }
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectFields = [
+            { select: 'a_dis_desc', custom: 'a_dis_desc_custom' },
+            { select: 'a_fee_desc', custom: 'a_fee_desc_custom' }
+        ];
+    
+        selectFields.forEach(({ select, custom }) => {
+            const selectField = document.querySelector(`select[name="${select}"]`);
+            const customField = document.querySelector(`input[name="${custom}"]`);
+    
+            selectField.addEventListener('change', function () {
+                if (this.value === 'other') {
+                    customField.style.display = 'block';
+                    customField.required = true; // Make it required when shown
+                } else {
+                    customField.style.display = 'none';
+                    customField.required = false; // Remove required attribute
+                    customField.value = ''; // Clear custom field value
+                }
+            });
+        });
+    });
+    
+    setTimeout(function () {
+        const alert = document.querySelector('.alert');
+        if (alert) {
+            // Removes the flash message after 1 seconds
+            alert.remove(); 
+        }
+        }, 300);
+    </script>
+
+<!--NAV link-->
+<ul class="nav-right">
+    <li><a href="{{ url_for('logout')}}" 
+        onclick="confirmLogout(event)">Logout</a></li>
+</ul>
+
+<h1>Additional Information</h1>
+<form action="{{ url_for('additional_save_to_excel') }}" method="POST">
+    {{ form.hidden_tag() }}  <!-- CSRF protection -->
+    <div class="container">
+        <div class="row"> 
+            <!-- Left container occupying half of the row -->
+            <div class="col-md-6">
+                <h3>Discount</h3>
+                <div class="mb-3">
+                    <!-- Discount description field -->
+                    {{ form.a_dis_desc.label(class="form-label") }}
+                    {{ form.a_dis_desc(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Discount description field -->
+                    {{ form.a_dis_desc_custom.label(class="form-label") }}
+                    {{ form.a_dis_desc_custom(class="form-control") }}    
+                </div>
+                <div class="mb-3">
+                    <!-- Discount value field -->
+                    {{ form.a_dis_value.label(class="form-label") }}
+                    {{ form.a_dis_value(class="form-control") }}
+                </div>
+            </div>
+
+            <!-- Right container occupying half of the row -->
+            <div class="col-md-6">
+                <h3>Charge / Fee</h3>
+                <div class="mb-3">
+                    <!-- Fee description field -->
+                    {{ form.a_fee_desc.label(class="form-label") }}
+                    {{ form.a_fee_desc(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Fee description field -->
+                    {{ form.a_fee_desc_custom.label(class="form-label") }}
+                    {{ form.a_fee_desc_custom(class="form-control") }}    
+                </div>
+                <div class="mb-3">
+                    <!-- Fee value field -->
+                    {{ form.a_fee_value.label(class="form-label") }}
+                    {{ form.a_fee_value(class="form-control") }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <h3>Payment / Prepayment Information</h3>
+            <!-- Left container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <!-- Prepayment mode field -->
+                    {{ form.a_payment_mode.label(class="form-label") }}
+                    {{ form.a_payment_mode(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Bank account field -->
+                    {{ form.a_bank_acc.label(class="form-label") }}
+                    {{ form.a_bank_acc(class="form-control") }}    
+                </div>
+                <div class="mb-3">
+                    <!-- Payment term field -->
+                    {{ form.a_payment_term.label(class="form-label") }}
+                    {{ form.a_payment_term(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Payment amount field -->
+                    {{ form.a_payment_amount.label(class="form-label") }}
+                    {{ form.a_payment_amount(class="form-control") }}
+                </div>
+            </div>
+
+            <!-- Right container occupying half of the row -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <!-- Prepayment date field -->
+                    {{ form.a_prepayment_date.label(class="form-label") }}
+                    {{ form.a_prepayment_date(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <!-- Prepayment number field -->
+                    {{ form.a_prepayment_num.label(class="form-label") }}
+                    {{ form.a_prepayment_num(class="form-control") }}   
+                    <!-- {% if form.a_prepayment_num.errors %}
+                        <div class="text-danger">
+                            {{ form.a_prepayment_num.errors[0] }}
+                        </div>
+                    {% endif %}  -->
+                </div>
+                <div class="mb-3">
+                    <!-- Bill number field -->
+                    {{ form.a_bill_num.label(class="form-label") }}
+                    {{ form.a_bill_num(class="form-control") }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Action buttons -->
+    <a type="button" class="btn btn-warning" 
+    href="{{ url_for('line_items')}}" id="next">
+        <i class="fas fa-arrow-left"></i> Back  
+    </a>
+
+    <button type="submit" class="btn btn-light" id="next1">
+        New Save To Excel <i class="fa fa-list"></i>
+    </button>  
+</form>
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+
+ <!-- Flash Messages with button -->
+ {% with messages = get_flashed_messages(with_categories=true) %}
+ {% for category, message in messages %}
+   <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+     {{ message | safe }}
+     <button type="button" class="btn-close" data-bs-dismiss="alert"
+         aria-label="Close"></button>
+   </div>
+{% endfor %}
+{% endwith %}
+
+ <!-- Google AdSense Code -->
+ <ins class="adsbygoogle"
+ style="display:block"
+ data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+ data-ad-slot="XXXXXXXXXX"
+ data-ad-format="auto"></ins>
+{% endblock %}

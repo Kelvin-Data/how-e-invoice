@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Custom CSS -->
+<link href="{{ url_for('static', filename='css/invoice.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/eula.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mobile10_eula.css') }}" rel="stylesheet">
+
+<!-- Custom JS -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById("{{ form.accept.id }}");
+        const submitButton = document.getElementById("submit");
+
+        // Disable submit button initially
+        submitButton.disabled = true;
+
+        // Enable submit button when the checkbox is checked
+        checkbox.addEventListener("change", function () {
+            submitButton.disabled = !checkbox.checked;
+        });
+    });
+
+
+    function confirmLogout(event) {
+        // Prevent the default link behavior
+        event.preventDefault();
+    
+        // Show confirmation dialog
+        if (confirm("Are you sure you want to logout? You will loss all data!")) {
+            // If confirmed, redirect to the logout route
+            window.location.href = "{{ url_for('logout') }}";
+        }
+        // If canceled, do nothing and stay on the current page
+    }
+
+</script>
+
+<!--NAV link-->
+<ul class="nav-right">
+    <li><a href="{{ url_for('logout')}}" 
+        onclick="confirmLogout(event)">Logout</a></li>
+</ul>
+
+<h1>Terms And Conditions</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {% if terms_text %}
+        <div class="terms-container">
+            {% for line in terms_text.split("\n") %}
+                <p>  {{ line | safe }}</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Terms and Conditions file not found.</p>
+    {% endif %}
+
+
+
+    <div>
+        <div class="form-check">
+            {{ form.accept(class="form-check-input") }}
+            <label class="form-check-label" for="{{ form.accept.id }}">
+                {{ form.accept.label.text }}
+            </label>
+        </div>
+    </div>
+    <div class="form-group mt-3 text-center">
+        {{ form.submit(id="submit", value="Submit")}} 
+        {{ form.cancel(id="cancel", value="Cancel")}}
+    </div>
+</form>
+
+<!-- Flash message -->
+{% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} 
+        alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" 
+            data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+{% endfor %}
+
+{% endblock %}
