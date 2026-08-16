@@ -1,0 +1,29 @@
+@media only screen and (max-width: 600px) {
+    html, body {
+        height: 135%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h1 {
+        margin-top: 30px;
+    }
+    
+    a#next {
+        width: 90%; /* Make the back button span the entire screen width */
+        margin: 10px auto 10px; /*Center-align with 10px spacing below and 60px spacing above the next button*/
+        display: block; /* Ensure it behaves like a block element */
+        padding: 10px; /*Add padding for better touch usability */
+        margin-bottom: 20px;
+        
+    }
+
+    button#next1 {
+        width: 90%; /* Make the next button span the entire screen width */
+        margin: 10px auto 0; /* Center-align with 60px spacing above */
+        display: block; /* Ensure it behaves like a block element */
+        padding: 10px; /* Add padding for better touch usability */
+        margin-bottom: 50px;
+    }
+}

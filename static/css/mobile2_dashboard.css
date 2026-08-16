@@ -1,0 +1,97 @@
+@media only screen and (max-width: 600px) {
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(150deg, 
+            rgba(95,239,234,1) 0%, 
+            rgba(111,136,250,1) 100%);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        }
+
+    h1 {
+        margin-top: 40px;
+        padding-bottom: 5px;
+    }
+
+    small {
+        margin-left: 120px;
+    }
+
+    .form-label1 {
+        text-align: center; /* Center-align the label */
+        font-size: 16px; /* Slightly smaller font size for readability */
+        margin-bottom: 5px; /* Add spacing below the label */
+        margin-top: 20px;
+    }
+
+    #upload_button {
+        text-align: center; /* Center-align the upload section */
+        margin-top: 10px; /* Add spacing above the button */
+    }
+
+    input#upload1 {
+        width: 90%; /* File input spans most of the screen width */
+        margin: 0 auto 15px; /* Center-align and add spacing below */
+        display: block; /* Ensure it behaves like a block element */
+    }
+
+    button#upload2 {
+        width: 90%; /* Button spans most of the screen width */
+        margin: 0 auto; /* Center-align the button */
+        display: block; /* Ensure it behaves like a block element */
+    }
+
+    .form-label2 {
+        text-align: center; /* Center-align the label */
+        font-size: 16px; /* Slightly smaller font size for readability */
+        margin-bottom: 5px; /* Add spacing below the label */
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    .form-label3 {
+        text-align: center; /* Center-align the label */
+        font-size: 16px; /* Slightly smaller font size for readability */
+        margin-bottom: 5px; /* Add spacing below the label */
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    button#download_1, #download_2 {
+        width: 90%; /* Button spans most of the screen width */
+        margin: 0 auto; /* Center-align the button */
+        display: block; /* Ensure it behaves like a block element */
+    }
+
+    .container.text-center img {
+        width: 100%; /* Make the image fully responsive */
+        height: auto; /* Maintain aspect ratio */
+        margin-top: 20px; /* Add spacing above the image */
+    }
+
+    #next {
+        width: 90%; /* Make the next button span most of the screen width */
+        margin: 20px auto; /* Center-align and add spacing above */
+        display: block; /* Ensure it behaves like a block element */
+        height: 50px; /* Set a fixed height for consistency */
+    }
+
+    .row.align-items-center {
+        flex-direction: column; /* Stack elements vertically */
+        text-align: center; /* Center-align text for all elements */
+    }
+
+    .col-auto,
+    .col {
+        width: 100%; /* Ensure each column spans the full width */
+        margin-bottom: 15px; /* Add spacing between elements */
+    }
+}
+    

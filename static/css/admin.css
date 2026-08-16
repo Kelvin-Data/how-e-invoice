@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.table-container {
+    width: 100%;
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+h1 {
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center; /* Center-align both header and content */
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+th {
+    background-color: #f4f4f4;
+    position: sticky; /* Keeps headers visible when scrolling */
+    top: 0;
+    z-index: 2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type="checkbox"] {
+    width: 20px; /* Adjust size */
+    height: 20px; /* Adjust size */
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Vertically center the buttons */
+    gap: 20px; /* Add a 20px gap between buttons */
+    width: 100%; /* Ensure the container takes full width to center properly */
+}
+
+#save {
+    width: 350px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+#back {
+    width: 350px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+.alert {
+    background-color: white;
+    color: black;
+    transition: opacity 1.5s ease; 
+}

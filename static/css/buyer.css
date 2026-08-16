@@ -1,0 +1,42 @@
+html, body {
+    height: 125%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(150deg, 
+        rgba(95,239,234,1) 0%, 
+        rgba(111,136,250,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Ensure buttons are aligned in a row and spaced evenly */
+.button-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Space out buttons from left to right */
+    align-items: center; /* Vertically center the buttons */
+    gap: 20px; /* Optional: Add a gap between buttons if needed */
+}
+
+button, a.btn {
+    flex: 1; /* Make all buttons the same width */
+    text-align: center; /* Center text inside buttons */
+}
+
+button#next2 {
+    width: 310px; /* Set the button width */
+    height: 45px; /* Define the height for the button */
+    margin: 15px auto; /* Center the button horizontally with spacing above and below */
+    display: flex; /* Enable flexbox layout */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    padding: 0; /* Remove padding, rely on flexbox for centering */
+    font-size: 20px; /* Set the font size */
+    background-color: #dc3545; /* Customize background color for 'Clear' button */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Optional: rounded corners */}

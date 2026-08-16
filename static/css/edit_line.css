@@ -1,0 +1,5 @@
+ /* Target datepicker dropdown elements to ensure white background */
+ .datepicker-dropdown,
+ .datepicker table {
+     background-color: white !important;
+ }

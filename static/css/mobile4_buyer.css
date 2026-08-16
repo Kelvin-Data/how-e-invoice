@@ -1,0 +1,48 @@
+@media only screen and (max-width: 600px) {
+    html, body {
+        height: 130%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h1 {
+        margin-top: 30px;
+    }
+    
+    .button-container {
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center align the buttons */
+        gap: 10px; /* Optional: Add space between buttons */
+    }
+
+    a#next, button#next1,  button#next3 {
+        width: 90%; /* Make buttons take the full width of the screen */
+        margin: 5px 0; /* Ensure proper margin between buttons */
+        display: block; /* Make buttons behave like block elements */
+        padding: 10px; /* Padding for better touch usability */
+        text-align: center; /* Center text inside buttons */
+    }
+
+    button#next2 {
+        width: 90%; /* Set button width to 90% of the parent container */
+        max-width: 400px; /* Ensure a maximum width on larger screens */
+        height: 50px; /* Set a comfortable height for the button */
+        margin: 10px auto; /* Center the button horizontally */
+        display: block; /* Ensure it behaves like a block element */
+        font-size: 20px; /* Font size for visibility */
+        box-sizing: border-box; /* Include padding in the button's total width */
+        text-align: center;
+    }
+
+    /* Optional: Adjust margins for the last button */
+    button#next3 {
+        margin-bottom: 20px; /* Adjust space below the "Next" button */
+    }
+
+    .clear-form {
+        text-align: center;
+        width: 100%;
+    }
+}

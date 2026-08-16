@@ -1,0 +1,65 @@
+@media only screen and (max-width: 600px) {
+    html, body {
+        height: 130%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center align the buttons */
+        gap: 10px; /* Optional: Add space between buttons */
+    }
+
+    h1 {
+        margin-top: 30px;
+    }
+
+    a#next, button#next,  button#next3 {
+        width: 100%; /* Make buttons take the full width of the screen */
+        margin: 5px 0; /* Ensure proper margin between buttons */
+        display: block; /* Make buttons behave like block elements */
+        padding: 10px; /* Padding for better touch usability */
+        text-align: center; /* Center text inside buttons */
+    }
+
+    button#next2 {
+        width: 310px; /* Set the button width */
+        height: 50px; /* Define the height for the button */
+        margin: 15px auto; /* Center the button horizontally with spacing above and below */
+        display: flex; /* Enable flexbox layout */
+        align-items: center; /* Vertically center the content */
+        justify-content: center; /* Horizontally center the content */
+        padding: 0; /* Remove padding, rely on flexbox for centering */
+        font-size: 20px; /* Set the font size */
+        background-color: #dc3545; /* Customize background color for 'Clear' button */
+        color: white; /* Text color */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Optional: rounded corners */
+    }
+    
+    
+    /* Optional: Adjust margins for the last button */
+    button#next3 {
+        margin-bottom: 20px; 
+    }
+
+    button#AddLineBtn {
+        width: 90% !important;
+        margin: 10px auto !important;
+        display: block !important;
+        padding: 10px !important;
+        margin-bottom: 20px !important;
+    }
+
+    button#save {
+        width: 90% !important;
+        margin: 10px auto !important;
+        display: block !important;
+        padding: 10px !important;
+        margin-bottom: 20px !important;
+    }
+
+}

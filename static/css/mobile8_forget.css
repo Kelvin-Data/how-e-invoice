@@ -1,0 +1,58 @@
+@media only screen and (max-width: 600px) {
+    html, body {
+        height: 90%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(150deg, 
+            rgba(95,239,234,1) 0%, 
+            rgba(111,136,250,1) 100%);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        }
+
+    h4 {
+        margin-left: 45px;
+        margin-bottom: 20px;
+    }
+
+    .form-image-container-1 {
+        flex-direction: column; /* Stack items vertically */
+        margin-bottom: 40px;
+        margin-top: 70px;
+    }
+
+    .image-login {
+        display: flex; /* Use flexbox for alignment */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Optional: Center vertically if needed */
+        order: 1; /* Show image first */
+        width: 100%; /* Full width for better usability */
+        padding-left: 0; /* Remove specific padding */
+        padding-right: 0; /* Ensure balanced spacing */
+        margin: 0 auto; /* Center the container */
+        margin-left: 140px;
+    }
+
+    .image-login img {
+        max-width: 100%; /* Ensure image scales with container */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .form-container {
+        order: 2; /* Show form after the image */
+        width: 100%; /* Full width for better usability on small screens */
+        margin-left: -145px
+    }
+
+    #reset {
+        width: 350px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+}

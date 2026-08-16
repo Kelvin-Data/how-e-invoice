@@ -1,0 +1,45 @@
+li {
+    margin-right: 50px;
+}
+
+#upload1 {
+    margin-left: -100px;
+}
+
+#upload2 {
+    margin-left: -30px;
+    width: 118px;
+    margin-right: 14px;
+}
+
+.form-label2 {
+    margin-left: 160px;
+}
+
+#download_1 {
+    margin-left: 150px;
+}
+
+#download_2 {
+    margin-left: 150px;
+}
+
+.form-control {
+    width: 180px;
+    margin-left: 265px;
+}
+
+.form-label2 {
+    margin-left: 178px;
+}
+
+.form-label3 {
+    margin-left: 200px;
+}
+
+#next {
+    margin-left: 980px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    width: 118px;
+}

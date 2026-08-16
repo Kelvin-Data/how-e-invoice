@@ -1,0 +1,33 @@
+html, body {
+    height: 120%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(150deg, 
+        rgba(95,239,234,1) 0%, 
+        rgba(111,136,250,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+a#next, a#next1 {
+    display: inline-block; /* Ensure the buttons are inline */
+    padding: 10px 20px; /* Add padding for better clickability */
+    width: auto; /* Buttons will adjust width based on content */
+}
+
+a#next {
+    float: left; /* Float the "Back" button to the left */
+    margin-left: 50px;
+    margin-right: 970px;
+    margin-bottom: 70px;
+}
+
+a#next1 {
+    float: right; /* Float the "Next" button to the right */
+    margin-bottom: 70px;
+}

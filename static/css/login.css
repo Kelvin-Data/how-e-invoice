@@ -1,0 +1,235 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(150deg, 
+        rgba(95,239,234,1) 0%, 
+        rgba(111,136,250,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    margin-top: 50px;
+}
+
+small {
+    margin-left: 230px;
+    color: red;
+}
+
+h4 {
+    text-align: center;
+}
+
+form {
+    padding: 10px 80px;
+}
+
+.form-image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Space between the form and the image */
+    gap: 10px; 
+    /* Adds some space at the top */
+    margin-top: 100px; 
+}
+
+.form-image-container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Space between the form and the image */
+    gap: 10px; 
+    /* Adds some space at the top */
+    margin-top: 80px; 
+    margin-bottom: 50px;
+}
+
+.form-image-container-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Space between the form and the image */
+    gap: 10px; 
+    /* Adds some space at the top */
+    margin-top: 80px; 
+    margin-bottom: 90px;
+}
+
+.form-image-container-3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Space between the form and the image */
+    gap: 10px; 
+    /* Adds some space at the top */
+    margin-top: 180px; 
+    margin-bottom: 10px;
+}
+
+.form-container {
+    /* Let the form take some portion of the available width */
+    flex: 1; 
+    /* Optional: add some padding */
+    padding-right: 10px; 
+    margin-left: 100px;
+} 
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns: 1 for label, 3 for input */
+    row-gap: 10px; /* Add space between items */
+    align-items: center; /* Align items vertically centered */
+    width: 350px;
+}
+
+.grid-container > div {
+    text-align: left;
+    padding-bottom: 10px;
+    border-radius: 30px;
+}
+
+hr.rounded {
+    border-top: 5px solid black;
+    width: 353px;
+    /* margin-top: 10px; */
+    margin-left: 80px;
+}
+
+#google {
+    padding : 0 30px 0 30px; 
+    height : 50px;
+    width: 350px;
+    margin-bottom: 50px;
+    margin-top: 5px;
+}
+
+#login {
+    width: 350px;
+    height: 50px;
+}
+
+
+.image-login {
+    /* Let the image take the rest of the space */
+    flex: 1; 
+    /* Optional: aligns the image to the right */
+    text-align: right;
+    /* Shift image 50px to the left */
+    position: relative;
+    right: 140px; /* Shift image 50px to the left */
+}
+
+.form-control {
+    /* Makes sure form controls take the full width */
+    width: 100%; 
+}
+
+.nav-right {
+    list-style-type: none; /* Removes the bullet points */
+    position: absolute; /* Position the element relative to the page */
+    top: 0; /* Aligns it at the top */
+    right: 0; /* Aligns it at the right */
+    margin: 20px; /* Adds some space around the element */
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+.nav-right li {
+    display: inline-block; /* Makes list items inline to avoid vertical stacking */
+    margin-left: 20px; /* Adds some space between the list items */
+}
+
+.nav-right a {
+    text-decoration: underline; /* Adds underline to the link */
+    color: black; /* Sets the link color to black */
+    font-weight: normal; /* You can make it bold if needed */
+}
+
+.nav-right a:hover {
+    color: darkgray; /* Changes color on hover */
+    text-decoration: underline; /* Keeps underline on hover */
+}
+
+.forget-psw {
+    font-size: 14px;
+    color: black;
+}
+
+.form-image-container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Space between the form and the image */
+    gap: 10px; 
+    /* Adds some space at the top */
+    margin-top: 100px; 
+}
+
+p {
+    width: 230px;
+    margin-left: 80px;
+}
+
+#var {
+    color:red; 
+    font-size: 15px; 
+    margin: 0 auto; 
+    width: fit-content;
+}
+
+#ok {
+    margin-left: 80px;
+    width: 230px;
+    background-color: #0d6efd;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+#submit {
+    width: 350px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+#reset {
+    width: 350px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.underline {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.tick {
+    font-size: 12px;
+}
+
+.alert.fade {
+    /* Customize the fade-out duration (1.5 seconds) */
+    transition: opacity 1.5s ease;  
+}
+
+
+
+
+

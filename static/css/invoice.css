@@ -1,0 +1,104 @@
+.nav-right {
+    list-style-type: none; /* Removes the bullet points */
+    position: absolute; /* Position the element relative to the page */
+    top: 0; /* Aligns it at the top */
+    right: 0; /* Aligns it at the right */
+    margin: 20px; /* Adds some space around the element */
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+.nav-right li {
+    display: inline-block; /* Makes list items inline to avoid vertical stacking */
+    margin-left: 20px; /* Adds some space between the list items */
+}
+
+.nav-right a {
+    text-decoration: underline; /* Adds underline to the link */
+    color: black; /* Sets the link color to black */
+    font-weight: normal; /* You can make it bold if needed */
+}
+
+.nav-right a:hover {
+    color: darkgray; /* Changes color on hover */
+    text-decoration: underline; /* Keeps underline on hover */
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+
+
+.left-container {
+    margin-left: 120px;
+}
+
+.left-container, .right-container {
+    width: 42%;
+    float: left;
+    padding: 10px; 
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+#next {
+    /* margin-left: 430px; */
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#next1 {
+    /* margin-left: 430px; */
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+
+#next3 {
+    /* margin-left: 430px; */
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#addLineBtn {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#save {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.alert.fade {
+    /* Customize the fade-out duration (1.5 seconds) */
+    transition: opacity 1.5s ease;  
+}
+
+.alert {
+    position: fixed; /* Keeps it at the viewport bottom */
+    bottom: 20px; /* Adds some space from the bottom */
+    left: 50%; /* Moves it to the horizontal center */
+    transform: translateX(-50%); /* Centers it exactly */
+    width: 90%; /* Adjusts width based on content */
+    max-width: 90%; /* Limits width if desired */
+    z-index: 1000; /* Keeps it above other elements */
+    margin: 0; /* Resets any default margins */
+    padding: 15px 20px; /* Adds padding for readability */
+    border-radius: 5px; /* Optional: rounds the corners slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for visibility */
+    margin-bottom: 20px;
+}
+
+small {
+    color: red;
+}
+
+.right-container {
+    margin-right: 550px;;
+}
